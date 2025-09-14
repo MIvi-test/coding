@@ -5,9 +5,9 @@ void CHAR()
     unsigned char variable_1 = 1; 
     short count = 0; //счётчик длинны
     while (variable_1 > 0) {variable_1 <<= 1; count++;} //переполнение с подсчётом длинны
-    long long number = 1; //предел значения
-    count--;
-    while (count > 0){number += 1<<count;--count;} //создание максимального значения путём смещения единицы
+    unsigned char number = 1; //предел значения
+    count--;number <<=count;
+    number--;number<<=1;number++;
     {printf("для unsighed char\nMAX = %d\nMIN = %d\n",number, 0);}
     signed char variable_2 = 1;
     while (variable_2 > 0) {variable_2 <<= 1;} // переполнение, но так как это signed, то он по окончанию отрицателен
@@ -20,8 +20,8 @@ void SHORT()
     short count = 0; //счётчик длинны
     while (variable_1 > 0) {variable_1 <<= 1; count++;} //переполнение с подсчётом длинны
     long long number = 1; //предел значения
-    count--;
-    while (count > 0){number += 1<<count;--count;} //создание максимального значения путём смещения единицы
+     count--;number <<=count;
+    number--;number<<=1;number++; //создание максимального значения путём смещения единицы
     {printf("для unsighed short\nMAX = %d\nMIN = %d\n",number, 0);}
     signed short variable_2 = 1;
     while (variable_2 > 0) {variable_2 <<= 1;} // переполнение, но так как это signed, то он по окончанию отрицателен
@@ -35,7 +35,7 @@ void INT()
     while (variable_1 > 0) {variable_1 <<= 1; count++;} //переполнение с подсчётом длинны
     unsigned int number = 1; //предел значения
     count-=1;number<<=count;number--;number<<=1;number++;
-    
+    printf("%d", count);
     {printf("для unsighed int\nMAX = %u\nMIN = %u\n",number, 0);}
     signed int variable_2 = 1;
     while (variable_2 > 0) {variable_2 <<= 1;} // переполнение, но так как это signed, то он по окончанию отрицателен
@@ -149,19 +149,19 @@ void LONG_DOUBLE()
 
 int main()
 {
-    CHAR();
+    // CHAR();
 
-    SHORT();
+    // SHORT();
 
-    INT();
+    // INT();
 
-    LONG();
+    // LONG();
 
-    LONG_LONG();
+    // LONG_LONG();
 
-    FLOAT();
+    // FLOAT();
 
-    DOUBLE();
+    // DOUBLE();
 
-    LONG_DOUBLE();
+    // LONG_DOUBLE();
 }
