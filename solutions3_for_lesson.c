@@ -102,7 +102,6 @@ int main(void)
 {
     char *str;
     readstr(&str);
-    printf("input string:\n");
 
     // // solution1(str);
     // char *sol2_str;
