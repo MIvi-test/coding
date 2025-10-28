@@ -50,7 +50,7 @@ void make_str(const char *old_str, char **new_str)
     char *str = (char *)malloc(1 * sizeof(char));
     if (!str)
     {
-        goto A;
+        goto end;
     }
     short len = 0;
     short k = 0;
@@ -67,36 +67,101 @@ void make_str(const char *old_str, char **new_str)
         if (!r_str)
         {
             printf("HHAHAHAHHA");
-            goto A;
+            goto end;
         }
         str = r_str;
     }
     str[len] = '\0';
     *new_str = str;
     return;
-A:
+end:
     printf("ошибка инициализации\n");
     return;
 }
 
+char compare(const char *str1, const char *str2)
+{
+    char flag = 1;
+    short i = 0;
+    for (; str1[i] != '\0' && str2[i] != '\0'; i++)
+    {
+        if (str1[i] != str2[i])
+        {
+            flag = 0;
+        }
+    }
+    if (str1[i] == '\0' && str2[i] == '\0')
+        return flag;
+    else
+        return 0;
+}
+
 void testing()
 {
-    char *massive[] = {
-        "shlakoblock ocktavius\0",
-        "шлакоблок окунь\0",
-        "папа папаха\n" // в конце должно быть либо \n или \0 или пробел
+    char *test_cases[] = {
+        "шлакоблок окунь",
+        "папа папаха",
+        "папа мама",
+        "программа марафон",
+        "компьютер термос",
+        "телефон оникс",
+        "солнце цель",
+        "книга галактика",
+        "окно ноутбук",
+        "стол лодка",
+        "море река",
+        "небо облако",
+        "город ода",
+        "цветок ток",
+        "дом мод",
+        "лето торт",
+        "зима маска",
+        "весна нарцисс",
+        "осень неньютоновская",
+        "дождь жребий"};
+
+    char *expected_results[] = {
+        "шлакоблокунь",        // шлакоблок + окунь
+        "папаха",              // папа + папаха
+        "папамама",            // папа + мама
+        "программарафон",      // программа + марафон
+        "компьютермос",        // компьютер + термос
+        "телефоникс",          // телефон + оникс
+        "солнцель",            // солнце + цель
+        "книгалактика",        // книга + галактика
+        "окноутбук",           // окно + ноутбук
+        "столодка",            // стол + лодка
+        "морека",              // море + река
+        "небоблако",           // небо + облако
+        "города",              // город + ода
+        "цветок",              // цветок + ток (полное перекрытие "ток")
+        "домод",               // дом + мод
+        "леторт",              // лето + торт
+        "зимаска",             // зима + маска
+        "веснарцисс",          // весна + нарцисс
+        "осеньненьютоновская", // осень + неньютоновская
+        "дождьжребий"          // дождь + жребий
     };
-    short len = sizeof(massive) / sizeof(massive[0]);
+
+    short len = sizeof(test_cases) / sizeof(test_cases[0]);
     for (short i = 0; i < len; i++)
     {
-        char *a = massive[i];
+        char *a = test_cases[i];
         short k = 0;
         char *str;
         searching(a);
         make_str(a, &str);
-        if (!str)
+        if (str)
         {
-            printf("%s\n", str);
+            printf("test %d: ", i + 1);
+            if (compare(str, expected_results[i]))
+            {
+                printf("OK\n");
+            }
+            else
+            {
+                printf("ERROR %s\n", str);
+            }
         }
         else
         {
