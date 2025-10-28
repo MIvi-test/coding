@@ -6,7 +6,7 @@
 
 short right;
 short left;
-short join; //проще сделать так, чем посстоянно передавать из одной функции в другую
+short join; // проще сделать так, чем посстоянно передавать из одной функции в другую
 
 void searching(const char *str)
 {
@@ -94,7 +94,14 @@ void testing()
         char *str;
         searching(a);
         make_str(a, &str);
-        printf("%s\n", str);
+        if (!str)
+        {
+            printf("%s\n", str);
+        }
+        else
+        {
+            return;
+        }
     }
 }
 
