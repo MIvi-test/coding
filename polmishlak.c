@@ -42,7 +42,6 @@ void searching(const char *str, short *right, short *left, short *join)
     }
     return;
 }
-
 void make_str(const char *old_str, char **new_str)
 {
     short right;
@@ -177,11 +176,11 @@ int main()
     scanf("%d", &N);
     getchar();
 
-    char* words[N];
-    char *a;
+    char words[N][SIZE];
+
     for (int i = 0; i < N; i++)
     {
-        gets(a);
+        fgets(words[i], SIZE, stdin);
     }
 
     for (short n = 0; n < N; n++)
@@ -193,5 +192,3 @@ int main()
     // testing();
     return 0;
 }
-
-// 'couse sec

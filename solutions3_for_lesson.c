@@ -103,11 +103,11 @@ int main(void)
     char *str;
     readstr(&str);
 
-    // // solution1(str);
-    // char *sol2_str;
-    // solution2(str, sol2_str);
-    // printf("%s", sol2_str);
-    // printf()
+    // solution1(str);
+    char *sol2_str;
+    solution2(str, sol2_str);
+    printf("%s", sol2_str);
+    printf()
     solution3(str, 0);
     return 1;
 }
