@@ -1,14 +1,10 @@
 .vscode
 .qodo
 *.exe
-solutions3_for_lesson.exe
+*.pdf
+*.docx
 test.py
 main.py
 test.py
-коломийченко_лаб4.docx
-коломийченко_лаб5.docx
-коломийченко_лаб5.pdf
-read_end/.qodo
 test.py
-read_end/text.txt
 /read_end/test.c

@@ -3,7 +3,7 @@
 
 #define max(a, b) (a > b ? a : b)
 
-int position_dot(char *p)
+int position_dot(const char *p)
 {
     int i = -1;
     int finded_index = -1;
@@ -16,7 +16,7 @@ int position_dot(char *p)
     }
     return finded_index;
 }
-void fileManager(char *file_name)
+void fileManager(const char *file_name)
 {
     // в принтуемом
     // в многорострочном коменте
@@ -106,6 +106,7 @@ void reader(char *project)
         fscanf(p, "%s\n", filename);
         char *filename_without_extended;
         strncpy(filename_without_extended, filename, position_dot(filename));
+        printf("%s\n", filename_without_extended);
         filename_without_extended[position_dot(filename)] = '\0';
         fileManager(filename_without_extended);
     }
@@ -113,5 +114,5 @@ void reader(char *project)
 int main()
 {
     // fileManager("test.c", 10);
-    reader("text.txt");
+    reader("project.txt");
 }
