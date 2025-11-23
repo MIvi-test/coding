@@ -1,10 +1,9 @@
 #include <stdio.h>
 
-// реализуем шахматы и 8 ферзей
 #define SIZE 8
 
 int TABLE[SIZE][SIZE];
-// нормально не чистит вертикали, норм в рекурсию не входит
+
 short position(int n)
 {
 
@@ -46,7 +45,7 @@ short position(int n)
 int chakmate(int n)
 {
 
-    if (n == 8) // просто вывод получившегося, победа!
+    if (n == SIZE) // просто вывод получившегося, победа!
     {
         for (int i = 0; i < SIZE; i++)
         {

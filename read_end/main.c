@@ -32,8 +32,8 @@ void fileManager(const char *file_name)
     sprintf(new_file, "%s.wc", file_name);
     FILE *file_write = fopen(new_file, "w");
 
-    char print = 0;                // флаг если переносили символ
-    char in_quoted_qloaca = 0;     // флаг для принта
+    char print = 0;                // флаг если записывали символ
+    char in_quoted = 0;     // флаг для принта
     char c;                        // для текущего символа
     char old_c = getc(file_read);  // для предыдущего символа
     unsigned char count_slash = 0; // чтобы понять, когда начинаеся строчный комент
@@ -43,7 +43,7 @@ void fileManager(const char *file_name)
     {
         c = getc(file_read);
 
-        if (in_quoted_qloaca)
+        if (in_quoted)
         {
             putc(old_c, file_write);
             print = 1;
@@ -84,9 +84,9 @@ void fileManager(const char *file_name)
 
         old_c = c;
 
-        if (c == '"' && print == 1) // выход из статуса клоаки
+        if (c == '"' && print == 1) // смена статуса кавычек
         {
-            in_quoted_qloaca = !in_quoted_qloaca;
+            in_quoted = !in_quoted;
         }
         print = 0;
     }
@@ -94,7 +94,7 @@ void fileManager(const char *file_name)
     fclose(file_read);
     fclose(file_write);
 }
-void reader(char *project)
+void write_file_without_comment(char *project)
 {
     FILE *p = fopen(project, "r");
     int N;
@@ -102,11 +102,11 @@ void reader(char *project)
     char *filename;
     for (int i = 0; i < N; i++)
     {
-
         fscanf(p, "%s\n", filename);
         char *filename_without_extended;
         strncpy(filename_without_extended, filename, position_dot(filename));
-        printf("%s\n", filename_without_extended);
+        printf("%s\n", filename_without_extended); //вот тут недопониние #проблема. Если поставить "%s ", то код ломается
+        
         filename_without_extended[position_dot(filename)] = '\0';
         fileManager(filename_without_extended);
     }
@@ -114,5 +114,5 @@ void reader(char *project)
 int main()
 {
     // fileManager("test.c", 10);
-    reader("project.txt");
+    write_file_without_comment("project.txt");
 }

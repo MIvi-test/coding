@@ -3,6 +3,7 @@
 *.exe
 *.pdf
 *.docx
+*.txt
 test.py
 main.py
 test.py
